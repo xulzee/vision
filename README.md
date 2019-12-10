@@ -4,3 +4,5 @@
 - [设计框架](设计框架.md)
 - [部署教程](部署教程.md)
 - [docker私有仓库](docker-registry.md)
+- [提交HelloWorld Job](Training.md)
+
