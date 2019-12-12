@@ -41,6 +41,15 @@ sudo docker run \
 
 ## 如何使用private registry
 
+### 修改/etc/docker/daemon.json
+
+```
+# 加入 "insecure-registries": ["192.168.1.106:5000"]
+vim /etc/docker/daemon.json
+# 修改完成之后重启
+service  docker restart
+```
+
 ### 拉取一个镜像
 
 ```
@@ -50,13 +59,13 @@ sudo docker pull pytorch/pytorch:1.2-cuda10.0-cudnn7-runtime
 ### 使用tag指令将镜像指向到私有仓库
 
 ```
-sudo tag pytorch/pytorch:1.2-cuda10.0-cudnn7-runtime 192.168.1.106/pytorch:1.2-cuda10.0-cudnn7-runtime
+sudo docker tag pytorch/pytorch:1.2-cuda10.0-cudnn7-runtime 192.168.1.106:5000/pytorch:1.2-cuda10.0-cudnn7-runtime
 ```
 
 ###  将镜像推送到私有仓库
 
 ```bash
-sudo push 192.168.1.106/pytorch:1.2-cuda10.0-cudnn7-runtime
+sudo docker push 192.168.1.106:5000/pytorch:1.2-cuda10.0-cudnn7-runtime
 ```
 
 ### 完成
