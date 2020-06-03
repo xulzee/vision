@@ -15,8 +15,7 @@ mkdir -p /opt/data/registry  //创建Repositories存储目录
 # -p ：指定映射端口（前者是宿主机的端口号，后者是容器的端口号）
 # -v ：数据挂载（前者是宿主机的目录，后者是容器的目录）
 # --name : 为运行的容器命名
-sudo docker run -d -p 5000:5000 -v /opt/data/registry:/var/lib/registry \ 
-      --name private_registry registry 
+sudo docker run -d -p 5000:5000 -v /opt/data/registry:/var/lib/registry --name private_registry registry 
 
 # 修改 /etc/docker/daemon, 加入 "insecure-registries": ["192.168.1.106:5000"]
 
@@ -33,7 +32,7 @@ sudo docker start private_registry   //重启registry服务
 
 sudo docker run \
   -d \
-  -e ENV_DOCKER_REGISTRY_HOST=yun.nju.edu.cn \
+  -e ENV_DOCKER_REGISTRY_HOST=192.168.1.106 \
   -e ENV_DOCKER_REGISTRY_PORT=5000 \
   -p 10080:80 \
   --name registry_web \
